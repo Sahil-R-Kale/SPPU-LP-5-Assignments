@@ -50,7 +50,7 @@ void parallelBubbleSort(vector<int> &arr)
     {
         isSwapped = false;
         int first = i % 2;
-        #pragma omp parallel for shared(arr, first)
+        #pragma omp parallel for shared(arr, first) reduction(|| : isSwapped)
         for (int j = first; j < n - 1; j+=2)
         {
             if (arr[j] > arr[j + 1])
